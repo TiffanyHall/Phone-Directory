@@ -1,0 +1,80 @@
+body {
+
+margin: 0;
+
+}
+
+ul {
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: #010153;
+    width: 25%;
+    height: 100%;
+    position: fixed;
+    overflow: auto;
+    padding-top: 200px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+}
+
+li {
+    text-align: center;
+    padding: 10px;
+   
+   
+
+}
+
+li a {
+
+    color: #ffffff;
+    text-decoration: none;
+
+}
+
+.container {
+    float: right;
+    width: 75%;
+    font-family: fantasy;
+}
+
+.content {
+    margin-left: 40px;
+    font-size: 18px;    
+}
+
+.input {
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#verify-box {
+
+    margin-left: 40px;
+    font-size: 24px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 55%;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+
+}
+
+.fullList {
+
+    margin-top: 15px;
+    border: 1px solid #0dc084;
+    width: 55%;
+    padding: 20px;
+
+}
+
+input {
+
+height: 30px;
+width: 250px;
+
+}
