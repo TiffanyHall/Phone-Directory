@@ -22,6 +22,8 @@ const viewScreen = function () {
     $(`#verify-box`).hide();
     $(`#office`).show();
     $(`#phone`).show();
+    $(`.active`).removeClass("active");
+    $(`#view`).addClass("active");
     render();
 
 }
@@ -56,6 +58,8 @@ const addScreen = function () {
     $(`#verify-box`).hide();
     $(`#office`).show();
     $(`#phone`).show();
+    $(`.active`).removeClass("active");
+    $(`#add`).addClass("active");
     render();
 
 }
@@ -88,6 +92,8 @@ const deleteScreen = function () {
     $(`#verify-box`).hide();
     $(`#office`).show();
     $(`#phone`).show();
+    $(`.active`).removeClass("active");
+    $(`#delete`).addClass("active");
     render();
 
 }
@@ -127,6 +133,8 @@ const verifyScreen = function () {
     $(`#office`).hide();
     $(`#phone`).hide();
     document.getElementById("verify-box").style.display = "block";
+    $(`.active`).removeClass("active");
+    $(`#verify`).addClass("active");
     render();
 
 }
@@ -162,6 +170,8 @@ const updateScreen = function () {
     $(`#verify-box`).hide();
     $(`#office`).show();
     $(`#phone`).show();
+    $(`.active`).removeClass("active");
+    $(`#update`).addClass("active");
     render();
 }
 //update menu tab//
