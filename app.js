@@ -1,3 +1,5 @@
+let currentState = "";
+
 //render contact list //
 
 const render = function () {
@@ -11,9 +13,24 @@ const render = function () {
 
 $('#view').on('click', render);
 
+//view screen function//
+
+const viewScreen = function () {
+    currentState = "view";
+    $(`.content`).show();
+    $(`.input`).hide();
+    $(`#verify-box`).hide();
+    $(`#office`).show();
+    $(`#phone`).show();
+    render();
+
+}
+//view menu tab// 
+$('#view').on('click', viewScreen);
 
 
-//input new contact info//
+
+//add new contact function//
 
 const getInputVal = function () {
     const nameVal = $('#name').val();
@@ -31,80 +48,145 @@ const getInputVal = function () {
     render();
 
 }
+//add screen function//
+const addScreen = function () {
+    currentState = "add";
+    $(`.content`).show();
+    $(`.input`).show();
+    $(`#verify-box`).hide();
+    $(`#office`).show();
+    $(`#phone`).show();
+    render();
 
-    //add button//
-
-    $('#button').on('click', getInputVal);
-
-    // delete contact // 
-
-    const deleteInputVal = function () {
-        const nameVal = $('#name').val();
-
-        for (let i = 0; i < employeeList.length; i++) {
-            if (employeeList[i].name === nameVal) {
-                employeeList.splice(i, 1);
-            }
-
-        };
-        render();
-    }
-
-    //delete button//
-
-    $('#delete').on('click', deleteInputVal);
+}
+//add menu tab// 
+$('#add').on('click', addScreen);
 
 
-    //verify contact//
 
-    const verifyInput = function () {
-        const nameVal = $('#name').val();
+// delete contact function // 
 
-        for (let i = 0; i < employeeList.length; i++) {
-            if (employeeList[i].name === nameVal) {
-                $('#verify-box').html("Yes");
-            } else {
-                $('#verify-box').html("No");
-            }
+const deleteInputVal = function () {
+    const nameVal = $('#name').val();
 
-        };
-        document.getElementById("verify-box").style.display = "block";
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].name === nameVal) {
+            employeeList.splice(i, 1);
 
-        render();
-    }
-
-    //verify button//
-
-    $('#verify').on('click', verifyInput);
-
-    //Update contact//
-
-    const updateContact = function () {
-        const nameVal = $('#name').val();
-        const officeVal = $('#office').val();
-        const phoneVal = $('#phone').val();
-        var start_index = 1;
-
-        for (let i = 0; i < employeeList.length; i++) {
-            if (employeeList[i].name === nameVal) {
-                employeeList[i].officeNum = officeVal;
-                employeeList[i].phoneNum = phoneVal;
-
-            };
-
-            render();
         }
+
+    };
+    render();
+}
+
+// delete screen//
+
+const deleteScreen = function () {
+    currentState = "delete";
+    $(`.content`).show();
+    $(`.input`).show();
+    $(`#verify-box`).hide();
+    $(`#office`).show();
+    $(`#phone`).show();
+    render();
+
+}
+
+//delete tab//
+
+$('#delete').on('click', deleteScreen);
+
+
+//verify contact function//
+
+const verifyInput = function () {
+    const nameVal = $('#name').val();
+    let found = false;
+
+    console.log("name to be verified" + nameVal)
+
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].name === nameVal) {
+            found = true;
+            console.log("name found" + nameVal)
+        }
+    };
+
+    if (found === true) {
+        $('#verify-box').html("Yes");
+    } else {
+        $('#verify-box').html("No");
+    };
+}
+//verify screen//
+
+const verifyScreen = function () {
+    currentState = "verify";
+    $(`.content`).hide();
+    $(`verify-box`).show();
+    $(`#office`).hide();
+    $(`#phone`).hide();
+    document.getElementById("verify-box").style.display = "block";
+    render();
+
+}
+
+//verify menu tab//
+$('#verify').on('click', verifyScreen);
+
+
+//Update contact function//
+
+const updateContact = function () {
+    const nameVal = $('#name').val();
+    const officeVal = $('#office').val();
+    const phoneVal = $('#phone').val();
+    var start_index = 1;
+
+    for (let i = 0; i < employeeList.length; i++) {
+        if (employeeList[i].name === nameVal) {
+            employeeList[i].officeNum = officeVal;
+            employeeList[i].phoneNum = phoneVal;
+
+        };
+
+        render();
     }
-    //update button//
+}
+//update screen//
 
-    $('#update').on('click', updateContact);
+const updateScreen = function () {
+    currentState = "update";
+    $(`.content`).show();
+    $(`.input`).show();
+    $(`#verify-box`).hide();
+    $(`#office`).show();
+    $(`#phone`).show();
+    render();
+}
+//update menu tab//
+$('#update').on('click', updateScreen);
 
-    //new function delete screen//
-    //const state = delete
+//new function delete screen//
 
-    //const deleteScreen = function (){
-     //   render();
+const clickHandler = function () {
+    console.log("currentState = " + currentState)
 
+    if (currentState === "delete") {
+        deleteInputVal();
 
-   // }
+    } else if (currentState === "add") {
+        getInputVal();
+
+    } else if (currentState === "verify") {
+        verifyInput();
+
+    } else if (currentState === "update") {
+        updateContact();
+
+    }
+}
+
+$("#button").on("click", clickHandler);
+
 
